@@ -1,0 +1,9 @@
+input {
+    outline-width: 0;
+    font-size: 28px;
+    margin-bottom:5px;
+    /* background-color: inherit; */
+    background:transparent;
+    border: none;
+
+}

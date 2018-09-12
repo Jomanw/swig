@@ -1,0 +1,10 @@
+h1 {
+  font-family: helvetica;
+  font-weight: 200;
+}
+
+html, body {
+  background-color: #E9E9E9;
+  /* font-style: oblique; */
+  margin:8px;
+}

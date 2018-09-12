@@ -1,0 +1,23 @@
+.result {
+    border-radius: 25px;
+    border: 1px solid #F9F7FA;
+    padding: 10px;
+    margin:3px;
+}
+
+.word {
+  font-size: 20px;
+}
+
+.definitions {
+  font-size: 20px;
+  font-style: oblique;
+}
+
+.kana {
+  font-size: 12px;
+}
+
+.kanji {
+  font-size: 12px;
+}
