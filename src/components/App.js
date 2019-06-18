@@ -21,12 +21,9 @@ class App extends React.Component {
       <div
         ref={"AppContainer"}
       >
-      {
-        // <h1><center>Japanese Quickfind (Swig) </center></h1>
-
-      }
         <SearchForm
           dict={this.props.dict}
+          dictEnglish={this.props.dictEnglish}
           getHeight={this.getHeight}
         />
       </div>

@@ -6,6 +6,11 @@ import Results from "./Results.js";
 var wanakana = require('wanakana');
 // var converter = require('jp-conversion');
 
+const mode = 'japanese';
+
+const inlineStyle = {
+  float: 'right',
+};
 
 class SearchForm extends React.Component {
   constructor(props) {
@@ -28,7 +33,11 @@ class SearchForm extends React.Component {
       // console.log(this.currentResults);
     } else {
       if (true) {
-        return this.props.dict.autocomplete(searchTerm.toLowerCase());
+        if (mode == 'english') {
+          return this.props.dictEnglish.autocomplete(searchTerm.toLowerCase(),10);
+        } else {
+          return this.props.dict.autocomplete(searchTerm.toLowerCase(), 10);
+        }
       } else {
         console.log(wanakana.toRomaji(searchTerm))
         return this.props.dict.autocomplete(searchTerm.toLowerCase());
@@ -41,24 +50,23 @@ class SearchForm extends React.Component {
     this.setState({currentString: e.target.value}, function() {
       if (this.state.currentString == "")  {
         this.currentResults = [];
-        // console.log("Got HEREEE");
-        // console.log(this.currentResults);
       } else {
-        if (true) {
-          this.currentResults = this.props.dict.autocomplete(this.state.currentString.toLowerCase());
-        } else {
-          this.currentResults = this.props.dict.autocomplete(this.state.currentString.toLowerCase());
-        }
+        this.currentResults = this.props.dict.autocomplete(this.state.currentString.toLowerCase());
       }
     })
   };
   render() {
     return (
       <div>
-        <SearchBar
-          onChange={this.handleSearchInputChange}
-          value={this.state.currentString}
-        />
+        <div>
+          <SearchBar style="display"
+            onChange={this.handleSearchInputChange}
+            value={this.state.currentString}
+          />
+        </div>
+        <div style={inlineStyle}>
+          Settings Config File
+        </div>
         <Results
           results={this.searchForWords(this.state.currentString)}
 

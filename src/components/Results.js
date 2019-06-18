@@ -14,6 +14,7 @@ import Result from "./Result.js"
 
 class Results extends React.Component {
   render() {
+    console.log(this.props.results);
     return (
       <div class='flex-container'>
         {this.props.results.map(function(result) {
@@ -22,6 +23,7 @@ class Results extends React.Component {
                    definitions={result.definitions}
                    kanji={result.kanji}
                    kana={result.kana}
+                   language={result.language}
                  />
         })}
       </div>

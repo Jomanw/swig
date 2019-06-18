@@ -17,6 +17,7 @@ class Trie {
       this.word = word
       this.kanji = kanji
       this.kana = kana
+
     } else {
       var firstLetter = suffix.charAt(0)
       if (!(firstLetter in this.children)) {
@@ -88,16 +89,19 @@ class Trie {
     return suffixes
   }
   // Get the most likely matches from the given prefix
-  autocomplete(prefix) {
+  autocomplete(prefix, numResults) {
     var baseTrie = this.getTrie(prefix)
     if (!baseTrie) {
       return []
     }
     var wordContainers = baseTrie.getSuffixes()
     wordContainers.sort(function(first, second) {
-      return first.frequency - second.frequency
+      return first.word.length - second.word.length
     })
-    return wordContainers.slice(0, 5)
+    // wordContainers.sort(function(first, second) {
+    //   return first.frequency - second.frequency
+    // })
+    return wordContainers.slice(0, numResults)
   }
 }
 module.exports.Trie = Trie

@@ -8,15 +8,22 @@ import os
 dirname = os.path.dirname(os.path.realpath(__file__))
 results_filename = os.path.join(dirname, "./jlpt_data.json")
 
-
+jlpt_commonalities = {
+    1: 400,
+    2: 1150,
+    3: 2625,
+    4: 4875,
+    5: 11000,
+}
 
 def parse_row(row, level):
     return {
         "kanji": row[0].text,
-        "hiragana": row[1].text,
+        "kana": row[1].text,
         "romaji": romkan.to_hepburn(row[1].text),
-        "english_definition": row[2].text,
+        "english_definitions": [row[2].text],
         "jlpt_level": level,
+        "commonality": jlpt_commonalities[level],
     }
 
 # Goes through each of the JLPT levels, 1 - 5
