@@ -1,15 +1,20 @@
-// import '../assets/css/App.css';
+import '../assets/css/SearchForm.css';
 import React, { Component } from 'react';
 var {ipcRenderer} = require('electron');
 import SearchBar from "./SearchBar.js";
+import ConfigScreen from "./ConfigScreen.js";
 import Results from "./Results.js";
 var wanakana = require('wanakana');
 // var converter = require('jp-conversion');
 
 const mode = 'japanese';
 
-const inlineStyle = {
-  float: 'right',
+// const inlineStyle = {
+//   float: 'right',
+// };
+
+const inlineDisplay = {
+  display: 'inline-block',
 };
 
 class SearchForm extends React.Component {
@@ -58,14 +63,15 @@ class SearchForm extends React.Component {
   render() {
     return (
       <div>
-        <div>
+        <div className="search-bar">
           <SearchBar style="display"
             onChange={this.handleSearchInputChange}
             value={this.state.currentString}
           />
         </div>
-        <div style={inlineStyle}>
-          Settings Config File
+        <div className="settings-console">
+          Settings
+          <ConfigScreen/>
         </div>
         <Results
           results={this.searchForWords(this.state.currentString)}

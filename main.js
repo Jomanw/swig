@@ -31,29 +31,37 @@ function createMainWindow() {
     transparent: true,
     frame: false,
     type:"toolbar",
-  })
+  });
+
+  // mainWindow.removeMenu();
+  // Menu.setApplicationMenu(null);
 
   // TODO: Get the correct position to place the window given the user's screen size.
   mainWindow.setPosition(440, 212);
 
   // and load the index.html of the app.
-  let indexPath;
-  if ( dev && process.argv.indexOf('--noDevServer') === -1 ) {
-    indexPath = url.format({
-      protocol: 'http:',
-      host: 'localhost:8080',
-      pathname: 'index.html',
-      slashes: true,
-      search: "?App"
-    });
-  } else {
-    indexPath = url.format({
-      protocol: 'file:',
-      pathname: path.join(__dirname, 'dist', 'index.html'),
-      slashes: true,
-      search: "?App"
-    });
-  }
+  let indexPath = url.format({
+    protocol: 'file:',
+    pathname: path.join(__dirname, 'dist', 'index.html'),
+    slashes: true,
+    search: "?App"
+  });
+  // if ( dev && process.argv.indexOf('--noDevServer') === -1 ) {
+  //   indexPath = url.format({
+  //     protocol: 'http:',
+  //     host: 'localhost:8080',
+  //     pathname: 'index.html',
+  //     slashes: true,
+  //     search: "?App"
+  //   });
+  // } else {
+  //   indexPath = url.format({
+  //     protocol: 'file:',
+  //     pathname: path.join(__dirname, 'dist', 'index.html'),
+  //     slashes: true,
+  //     search: "?App"
+  //   });
+  // }
 
   app.dock.hide();
   mainWindow.setAlwaysOnTop(true, "floating");
@@ -81,15 +89,18 @@ function createMainWindow() {
   });
 
   mainWindow.on("blur", function() {
+    console.log("Blurred, and thus hiding");
     // Menu.sendActionToFirstResponder('hide:');
     mainWindow.hide();
   });
 
   mainWindow.on("focus", function() {
+    console.log("Focussed, and thus focusing");
     mainWindow.webContents.send("focused")
   });
 
   ipcMain.on("resize", function(event, height) {
+    console.log("Resizing");
     if ( dev ) {
       mainWindow.setSize(800, height + 30);
       mainWindow.setPosition(440, 212);
@@ -113,6 +124,12 @@ function createConfigurationWindow() {
   })
 
   let configurationPath;
+  //  = configurationPath = url.format({
+  //   protocol: 'file:',
+  //   pathname: path.join(__dirname, 'dist', 'index.html'),
+  //   slashes: true,
+  //   search: "?ConfigScreen",
+  // });
   if ( dev && process.argv.indexOf('--noDevServer') === -1 ) {
     configurationPath = url.format({
       protocol: 'http:',
@@ -130,7 +147,7 @@ function createConfigurationWindow() {
     });
   }
 
-  configurationWindow.loadURL( configurationPath );
+  // configurationWindow.loadURL( configurationPath );
   // configurationWindow.loadURL( __dirname, 'test.html' );
 }
 // handles the global keyboard shortcuts
@@ -142,10 +159,12 @@ function activationHandler() {
     //   mainWindow.hide();
     //   configurationWindow.hide();
     // } else {
+    console.log("Sending Hide Function");
     Menu.sendActionToFirstResponder('hide:');
     mainWindow.hide();
     // }
   } else {
+    console.log("Show function")
     mainWindow.setVisibleOnAllWorkspaces(true); // put the window on all screens
     // mainWindow.focus(); // focus the window up front on the active screen
     mainWindow.show()

@@ -11,4 +11,5 @@ document.body.appendChild( root );
 // And instead imports it in one of the children
 
 // Now we can render our application into it
+console.log("Yooo")
 render( <ViewManager/>, document.getElementById('root') );

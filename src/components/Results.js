@@ -16,7 +16,7 @@ class Results extends React.Component {
   render() {
     console.log(this.props.results);
     return (
-      <div class='flex-container'>
+      <div className='flex-container'>
         {this.props.results.map(function(result) {
           return <Result
                    word={result.word}

@@ -22,6 +22,8 @@ class ViewManager extends Component {
 
   static View(props) {
     let name = props.location.search.substr(1);
+    console.log(name);
+    console.log(props);
     let view = ViewManager.Views()[name];
     if(view == null)
       throw new Error("View '" + name + "' is undefined");

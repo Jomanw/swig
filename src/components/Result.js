@@ -5,14 +5,14 @@ import React, { Component } from 'react';
 class Result extends React.Component {
   render() {
     return (
-      <div class="result">
-      <span class="word">
+      <div className="result">
+      <span className="word">
         {this.props.word}:&nbsp;
       </span>
-      <span class="kanji">
+      <span className="kanji">
         ({this.props.kanji}
       </span>
-      <span class="kana">
+      <span className="kana">
       {
         this.props.kanji === this.props.kana ?
         (
@@ -22,7 +22,7 @@ class Result extends React.Component {
         )
       })&nbsp;
       </span>
-      <span class="definitions">
+      <span className="definitions">
         {this.props.definitions.join('; ')}
       </span>
       </div>

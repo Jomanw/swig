@@ -20,9 +20,21 @@ I made this so others wouldn't have to go through so much hassle just to find th
 ### Shoutouts
 I used the `basic-electron-react-boilerplate` to create this project, which made it super easy to get up and running without having to deal with setup process. You can find the link here: https://github.com/pbarbiero/basic-electron-react-boilerplate
 
+# Development
+
 
 ### Roadmap:
 Add support for more languages
 Add support for searching with different characters
 Add configuration page
 Add page for saving words to remember, with functionality to save the words
+
+### Useful Links:
+- Where to find default icons: https://www.iconarchive.com/tag/mac-icns
+- Packaging the Electron app: https://medium.com/how-to-electron/a-complete-guide-to-packaging-your-electron-app-1bdc717d739f
+
+
+### TODO's:
+
+
+# Development

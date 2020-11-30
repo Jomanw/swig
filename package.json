@@ -3,10 +3,10 @@
   "version": "0.7.0",
   "description": "Quickly find words in other languages",
   "author": "Jordan Wick",
-  "homepage": "https://github.com/pbarbiero/basic-electron-react-boilerplate",
+  "homepage": "https://github.com/jomanw/swig",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pbarbiero/basic-electron-react-boilerplate.git"
+    "url": "https://github.com/jomanw/swig.git"
   },
   "license": "MIT",
   "main": "main.js",
@@ -16,15 +16,48 @@
     "build": "webpack --config webpack.build.config.js",
     "package": "webpack --config webpack.build.config.js",
     "postpackage": "electron-packager ./ --out=./builds",
-    "scrape": "python3 scrape_wikipedia_words.py popular_words.json"
+    "scrape": "python3 scrape_wikipedia_words.py popular_words.json",
+    "postinstall": "install-app-deps",
+    "start": "npm install && electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "swig",
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": "NSIS",
+      "icon": "build/icon.ico"
+    }
   },
   "devDependencies": {
+    "ajv": "^6.12.6",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-preset-react": "^6.24.1",
     "babili-webpack-plugin": "^0.1.2",
     "css-loader": "^0.28.11",
     "electron": "^1.8.8",
+    "electron-builder": "^22.9.1",
     "electron-packager": "^12.1.1",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.11",
@@ -33,7 +66,7 @@
     "react-dom": "^16.4.2",
     "style-loader": "^0.19.1",
     "webpack": "^3.12.0",
-    "webpack-dev-server": "^2.11.3"
+    "webpack-dev-server": "^2.11.5"
   },
   "dependencies": {
     "jp-conversion": "0.0.7",
